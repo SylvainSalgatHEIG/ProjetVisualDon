@@ -100,6 +100,6 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
                 }
             })
             console.log(number);
-            return colorScale(number);
+            return colorScale(Math.random()*100);
         })
 })
