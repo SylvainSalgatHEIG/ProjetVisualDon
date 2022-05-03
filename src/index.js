@@ -1,7 +1,5 @@
 import * as d3 from 'd3'
 import data from '../data/fossil-fuel-co2-emissions-by-nation.csv'
-import lifeExpectancy from '../data/life_expectancy_years.csv'
-// import population from '../data/population_total.csv'
 
 import { json } from 'd3-fetch';
 
@@ -11,27 +9,19 @@ let selectedYear = '2014';
 
 
 data.forEach(pays => {
-    if(listePays.includes(pays.Country) == false && pays.Year == selectedYear){
+    if (listePays.includes(pays.Country) == false && pays.Year == selectedYear) {
         listePays.push(pays)
     }
 })
 
-console.log(listePays);
 
-
-
-// EXERCICE 2 - Cartographie
-
-// let countries = []
-
-// lifeExpectancy.forEach(row => {
-//     let countryData = {};
-//     countryData[row['country']] = row['1860']
-//     countries.push(countryData)
-// });
-
-// console.log(countries);
-
+let tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .style("background", "#FFF")
+    .text("");
 
 d3.select("body")
     .append("div")
@@ -76,8 +66,10 @@ switch (randomNumber) {
 
 
 let colorScale = d3.scaleThreshold()
-    .domain([50, 60, 70, 80, 90, 100])
+    .domain([100, 1000, 10000, 100000, 300000, 600000])
     .range(aRandomScheme[7]);
+
+
 
 d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson").then(function (d) {
     // Draw the map
@@ -93,13 +85,33 @@ d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/w
         .attr("id", function (d) { return d.properties.name; })
         .attr("fill", function (d) {
             let number = 0;
+            let countrySvg = d.properties.name.toUpperCase();
+
             listePays.forEach(country => {
-                if (typeof country[this.id] != "undefined") {
-                    console.log(country[this.id]);
-                    number = country[this.id]
+                if (country.Country == countrySvg) {
+                    number = country.Total
                 }
             })
-            console.log(number);
-            return colorScale(Math.random()*100);
+            return colorScale(number);
         })
+
+
+        .on('mouseover', function (d, i) {
+            console.log(d)
+            let countryName = d.srcElement.id
+            let countryNameCaps = countryName.toUpperCase()
+            let paysHovered = listePays.find(element => element.Country == countryNameCaps)
+            tooltip.text(d.srcElement.id + " : " + paysHovered.Total + " Co2 emissions in " + selectedYear)
+            d3.select(this).transition()
+                .duration('50')
+                .attr('opacity', '.85')
+            return tooltip.style("visibility", "visible")
+        })
+        .on('mouseout', function (d, i) {
+            d3.select(this).transition()
+                .duration('50')
+                .attr('opacity', '1');
+            return tooltip.style("visibility", "hidden")
+        })
+
 })
