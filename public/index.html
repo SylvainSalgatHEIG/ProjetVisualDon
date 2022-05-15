@@ -14,28 +14,31 @@
             text-align: justify;
         }
 
+        body {
+            margin: 0;
+        }
+
         /* Style the header */
         header {
-            background-color: rgb(211, 229, 236);
+            background-color: rgb(51, 51, 51);
             padding: 10px;
             padding-left: 50px;
             padding-right: 50px;
-
-            color: rgb(35, 35, 35);
+            color: rgb(255, 255, 255);
         }
 
         h1 {
             font-size: 2vw;
         }
 
-        .topnav {
+        #topnav {
             overflow: hidden;
-            background-color: #333;
+            background-color: rgb(26, 26, 26);
             display: flex;
             justify-content: center;
         }
 
-        .topnav a {
+        #topnav a {
             float: left;
             color: #f2f2f2;
             text-align: center;
@@ -44,21 +47,66 @@
             font-size: 17px;
         }
 
-        .topnav a:hover {
+        #topnav a:hover {
             background-color: #ddd;
             color: black;
         }
 
-        .topnav a.active {
+        #topnav a.active {
             background-color: #2561c0;
             color: white;
+        }
+
+        #content {
+            padding: 10px;
+            padding-left: 50px;
+            padding-right: 50px;
+
+            color: rgb(35, 35, 35);
+            height: 170px;
+            background-color: rgb(242, 242, 242);
+            justify-content: center;
+        }
+
+        #page2 {
+            height: 500px;
+            display: flex;
+            padding-top: 30px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        #graphTxt {}
+
+        #my_dataviz {}
+
+        #field {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .checkbox {
+            margin-left: 20px;
+            margin-right: 20px;
+
+        }
+
+        #worldMap {
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        #color {
+            justify-content: center;
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- <header>
+    <header>
         <h1>DataViz - Fossil fuel CO2 emissions</h1>
 
         <p>Carbon dioxide emissions are the primary driver of global climate change. It’s widely recognised that to
@@ -71,23 +119,100 @@
             metrics can tell very different stories. </p>
 
 
-    </header> -->
+
+    </header>
 
     <main>
-        <!-- <div class="topnav">
-            <a class="active" href="#home">Home</a>
-            <a href="#news">News</a>
-            <a href="#contact">Contact</a>
-            <a href="#about">About</a>
-        </div> -->
-        
-        <div id="worldMap">
-            <button id="play">play</button>
-            <span id="clock">year</span>
-            <div id="dropdown-list"></div>
+        <div id="topnav">
+            <a id='1' class="active" href="#">What is CO2 ?</a>
+            <a id='2' href="#">Concentrations of CO2</a>
+            <a id='3' href="#">The greenhouse effect</a>
+            <a id='4' href="#">The carbon cycle</a>
         </div>
 
-        <div id="my_dataviz"></div>
+        <div id="content">
+            <br>
+            Carbon dioxide (CO2) is an important trace gas in Earth's atmosphere. It is an integral part of the carbon
+            cycle, a biogeochemical cycle in which carbon is exchanged between the Earth's oceans, soil, rocks and the
+            biosphere. Plants and other photoautotrophs use solar energy to produce carbohydrate from atmospheric carbon
+            dioxide and water by photosynthesis.
+            <br><br>Almost all other organisms depend on carbohydrate derived from photosynthesis as their primary
+            source of energy and carbon compounds. CO2 absorbs and emits infrared radiation at wavelengths of 4.26 μm
+            (2347 cm−1) (asymmetric stretching vibrational mode) and 14.99 μm (667 cm−1) (bending vibrational mode) and
+            consequently is a greenhouse gas that plays a significant role in influencing Earth's surface temperature
+            through the greenhouse effect.
+        </div>
+
+        <div id="page2">
+            <div id="graphTxt">
+                <h2>Evolution of CO2 emissions over the years</h2>
+                <p> The carbon dioxide emissions released by global fossil fuel combustion and industrial processes have
+                    seen a dramatic rise since the birth of the industrial revolution. Carbon dioxide (CO2) emissions
+                    began to rise more steeply from the 1950s, and by 2000 had reached 25.23 billion metric tons of CO2.
+                    Emissions soared 32 percent between 2000 and 2010.
+                    <br><br>
+                <h3>Who are the largest emitters worldwide?</h3>
+                China is the most polluting country worldwide, having released 10.7 billion metric tons of
+                carbon dioxide emissions in 2020. This was more than the combined CO2 emissions of the United States,
+                India, Russia, and Japan. These five countries are the world's top polluters, and were responsible for
+                60 percent of global carbon dioxide emissions in 2020.
+                </p>
+            </div>
+            <div>
+                <div id="my_dataviz"></div>
+                <div id="field">
+                    <legend>Choose the graphics to show: </legend>
+
+                    <div class="checkbox">
+                        <input type="checkbox" id="total" name="Total" checked>
+                        <label for="total">Total</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" id="solid" name="Solid" checked>
+                        <label for="solid">Solid</label>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" id="liquid" name="Liquid" checked>
+                        <label for="liquid">Liquid</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="worldMap">
+            <h2>Evolution of CO2 emissions per country</h2>
+            <button id="play">Play animation</button>
+            <br>
+            <span>Current year : </span>
+            <span id="clock">1900</span>
+            <div id="dropdown-list"></div>
+
+
+
+
+        </div>
+        <div id="color">
+
+            <span style='font-size:50px;color:#eff3ff;margin-left:20px'>&#9632;</span>
+            <span>100T CO2</span>
+
+            <span style='font-size:50px;color:#c6dbef;margin-left:20px'>&#9632;</span>
+            <span>1'000T CO2</span>
+
+            <span style='font-size:50px;color:#9ecae1;margin-left:20px'>&#9632;</span>
+            <span>10'000T CO2</span>
+
+            <span style='font-size:50px;color:#6baed6;margin-left:20px'>&#9632;</span>
+            <span>100'000T CO2</span>
+
+            <span style='font-size:50px;color:#3182bd;margin-left:20px'>&#9632;</span>
+            <span>300'000T CO2</span>
+
+            <span style='font-size:50px;color:#08519c;margin-left:20px'>&#9632;</span>
+            <span>600'000T CO2</span>
+        </div>
+
+
 
     </main>
 
