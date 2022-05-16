@@ -1,10 +1,10 @@
 # Projet du cours Visualisation de Données 2022
-## Représentation de l'évolution des émissions de CO2 dues aux énergies fossiles par pays, de 1751 à 2014.
+## Représentation de l'évolution des émissions de CO2 dues aux énergies fossiles par pays, de 1900 à 2014.
 
 Lien vers la source de données : https://datahub.io/core/co2-fossil-by-nation
 
 ### Contexte
-Les données proviennent du site datahub.io et représentent les émissions de CO2 dues aux énergies fossiles par pays, de 1751 à 2014.
+Les données proviennent du site datahub.io et représentent les émissions de CO2 dues aux énergies fossiles par pays, de 1751 à 2014. J'ai choisi de traiter les données de 1900 à 2014, car celles-ci sont plus complètes et plus pertinentes.
 
 ### Description
 Les données sont présentées dans un fichier .csv sous forme de tableau dont chaque ligne représente une année d'émissions de CO2 pour un pays donné. Différentes colonnes additionnelles représentent la répartition des émissions annuelles du pays par type d'émission (solide, liquide, gaz, ciment, etc). Les différents formats manipulés sont donc les formats date (year), string et number.
